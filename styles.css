@@ -43,7 +43,7 @@ p{ margin: 0 0 var(--space-2) 0; }
   margin-inline: auto;
 }
 
-/* Header / Nav (flex) */
+/* Header / Navbar */
 header{
   position: sticky; top:0; z-index:10;
   background: rgba(19, 26, 46, 0.6);
@@ -62,7 +62,7 @@ header{
   border-radius: 10px;
   transition: color .2s, background-color .2s, text-underline-offset .2s;
 }
-/* Hover effect on links (pseudo-class) */
+/* Hover effect on links */
 .nav a:hover{
   color: var(--text);
   background: rgba(90,169,255,.12);
@@ -102,7 +102,7 @@ a:focus-visible, button:focus-visible{
 }
 
 
-/* Inline link style (attribute selector demo below) */
+/* Inline link style (attribute selector */
 a[href^="https://"]{ /* attribute selector */
   /* external links slightly stronger color */
 }

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Topic 2 | CSS Layout (Grid & Flexbox)</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Consistent header/nav (Flex layout in styles.css) -->
+  <header>
+    <div class="container nav" role="navigation" aria-label="Primary">
+      <div class="brand">IT 3203 • Web Project</div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="topic1.html">Topic 1</a>
+        <a href="topic2.html" aria-current="page">Topic 2</a>
+        <a href="concepts.html">Key Concepts</a>
+        <a href="references.html">References</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Page intro / hero -->
+    <section class="hero">
+      <h1>Topic 2: CSS Grid &amp; Flexbox</h1>
+      <p>
+        CSS offers two powerful layout systems. <strong>Grid</strong> is best for
+        two-dimensional layouts (rows <em>and</em> columns). <strong>Flexbox</strong> excels
+        at one-dimensional flow (a row <em>or</em> a column). Use them together for clean, responsive pages.
+      </p>
+      <!-- Decorative banner (replace with your own image if desired) -->
+      <img src="https://via.placeholder.com/1200x360?text=CSS+Layout:+Grid+%26+Flexbox"
+           alt="Illustration banner for CSS Grid and Flexbox" 
+           style="margin-top:1rem; border:1px solid var(--border); border-radius:10px;" />
+    </section>
+
+    <!-- GRID SECTION -->
+    <section>
+      <h2>CSS Grid Overview</h2>
+      <ul>
+        <li>Great for arranging cards, galleries, and full-page sections.</li>
+        <li>Controls both columns and rows with <code>grid-template-columns</code>, <code>grid-template-rows</code>, and <code>gap</code>.</li>
+        <li>Responsive patterns with <code>repeat()</code>, <code>auto-fit</code>, and <code>minmax()</code> minimize media queries.</li>
+      </ul>
+
+      <!-- Grid demo: uses the .grid and .card classes from styles.css -->
+      <h3>Grid Demo (auto-fit + minmax)</h3>
+      <p>The cards below auto-wrap into responsive columns. Resize the window to see it adapt.</p>
+      <div class="grid" aria-label="Grid demo of responsive cards">
+        <article class="card">
+          <h4>Card A</h4>
+          <p>Auto-fit columns using <code>repeat(auto-fit, minmax(260px, 1fr))</code>.</p>
+        </article>
+        <article class="card">
+          <h4>Card B</h4>
+          <p>Consistent spacing via <code>gap</code>. Borders provide structure.</p>
+        </article>
+        <article class="card">
+          <h4>Card C</h4>
+          <p>Each card has padding and a hover border effect for feedback.</p>
+        </article>
+        <article class="card">
+          <h4>Card D</h4>
+          <p>Works well for galleries, feature grids, and tool dashboards.</p>
+        </article>
+      </div>
+      <!-- End Grid demo -->
+    </section>
+
+    <!-- FLEX SECTION -->
+    <section style="margin-top: var(--space-4);">
+      <h2>Flexbox Overview</h2>
+      <ul>
+        <li>Ideal for navbars, toolbars, and vertical/horizontal alignment within a single row or column.</li>
+        <li>Key properties include <code>display: flex</code>, <code>justify-content</code>, <code>align-items</code>, and <code>gap</code>.</li>
+        <li>Combine with Grid: use Flex inside cards, or Grid for overall page sections.</li>
+      </ul>
+
+      <!-- Simple Flex demo (inline styles for quick illustration; site-wide styles remain in styles.css) -->
+      <h3>Flex Demo (row alignment)</h3>
+      <p>This toolbar aligns items in one row and spaces them with <code>gap</code>.</p>
+      <div style="
+          display:flex; 
+          align-items:center; 
+          justify-content:space-between; 
+          gap: .75rem; 
+          padding: .75rem 1rem; 
+          border:1px solid var(--border); 
+          border-radius:12px; 
+          background: var(--card);
+          margin-top:.75rem;">
+        <div style="font-weight:600;">Toolbar</div>
+        <div style="display:flex; gap:.5rem;">
+          <a class="btn" href="#grid">Grid</a>
+          <a class="btn" href="#flex">Flex</a>
+          <a class="btn" href="#!" aria-label="Demo action">Action</a>
+        </div>
+      </div>
+
+      <h3 style="margin-top:var(--space-3);">Flex Demo (column stack)</h3>
+      <p>Switching to a column makes a neat stacked list with even spacing.</p>
+      <div style="
+          display:flex; 
+          flex-direction:column; 
+          gap:.75rem; 
+          padding: .75rem 1rem; 
+          border:1px solid var(--border); 
+          border-radius:12px; 
+          background: var(--card);">
+        <div class="card">
+          <h4>Item 1</h4>
+          <p>Aligned naturally in a column; card styling adds padding/border.</p>
+        </div>
+        <div class="card">
+          <h4>Item 2</h4>
+          <p>Use Flex for stacks, settings panels, or sidebars.</p>
+        </div>
+      </div>
+      <!-- End Flex demo -->
+    </section>
+
+    <!-- Quick tip list to reinforce differences -->
+    <section style="margin-top: var(--space-4);">
+      <h2>When to Use Which?</h2>
+      <ul>
+        <li><strong>Use Grid</strong> for page sections, dashboards, galleries, and card layouts.</li>
+        <li><strong>Use Flex</strong> for nav bars, toolbars, buttons in a row, and simple alignment.</li>
+        <li><strong>Combine</strong> them: Grid for the big picture, Flex inside components.</li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- Consistent footer with the required class-project note -->
+  <footer role="contentinfo">
+    <div class="container footer-grid">
+      <small>
+        <strong>Note:</strong> This is a class project for
+        <a class="text-link" href="https://ksuweb.github.io/IT3203/" target="_blank" rel="noopener noreferrer">
+          IT 3203 (KSU)
+        </a>.
+      </small>
+      <div>
+        <a class="text-link" href="https://validator.w3.org/" target="_blank" rel="noopener noreferrer">Validate HTML</a>
+        &nbsp;·&nbsp;
+        <a class="text-link" href="https://pages.github.com/" target="_blank" rel="noopener noreferrer">GitHub Pages</a>
+      </div>
+    </div>
+  </footer>
+
+  <!--  notes:
+       - Grid demo uses the shared .grid and .card classes from styles.css.
+       - Flex demos use inline styles for teaching clarity; you can move them into styles.css later.
+       - The header nav itself is a Flex example (see .nav in styles.css). -->
+</body>
+</html>
