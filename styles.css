@@ -1,0 +1,171 @@
+/* ===============================
+   IT 3203 • Global Styles
+   - Demonstrates element, class, id, attribute, and pseudo selectors
+   - Grid + Flex examples
+   =============================== */
+
+/* ---- CSS Variables / Theme ---- */
+:root{
+  --bg: #0b0f1a;
+  --card: #121829;
+  --border: #2b3656;
+  --text: #e8ecf5;
+  --muted: #b9c3da;
+  --brand: #5aa9ff;
+  --brand-600: #2f86ef;
+  --ring: #8bd1ff;
+  --radius: 14px;
+  --space-1: .5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --maxw: 1100px;
+}
+
+/* ---- Reset-ish ---- */
+*{ box-sizing: border-box; }
+html, body{ margin:0; padding:0; }
+img{ max-width:100%; display:block; }
+
+/* ---- Body (element selector) ---- */
+body{
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Inter, Arial, sans-serif;
+  color: var(--text);
+  background:#0b0f1a;
+  line-height: 1.6;
+}
+h1,h2,h3{ line-height:1.25; }
+p{ margin: 0 0 var(--space-2) 0; }
+
+/* ---- Layout helpers ---- */
+.container{
+  width: min(100% - 2rem, var(--maxw));
+  margin-inline: auto;
+}
+
+/* Header / Nav (flex) */
+header{
+  position: sticky; top:0; z-index:10;
+  background: rgba(19, 26, 46, 0.6);
+  backdrop-filter: blur(6px) saturate(140%);
+  border-bottom: 1px solid var(--border);
+}
+.nav{
+  display:flex; align-items:center; justify-content:space-between;
+  padding-block:.75rem;
+}
+.brand{ font-weight:800; letter-spacing:.3px; }
+.nav a{
+  color: var(--muted);
+  text-decoration: none;
+  padding:.5rem .75rem;           /* padding requirement */
+  border-radius: 10px;
+  transition: color .2s, background-color .2s, text-underline-offset .2s;
+}
+/* Hover effect on links (pseudo-class) */
+.nav a:hover{
+  color: var(--text);
+  background: rgba(90,169,255,.12);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+/* Focus style for keyboard users */
+a:focus-visible, button:focus-visible{
+  outline: none;
+  box-shadow: 0 0 0 3px var(--ring);
+  border-radius: 12px;
+}
+
+/* Hero / intro spacing */
+.hero{ padding-block: var(--space-4); }
+
+/* Cards (borders + margins + padding) */
+.card{
+  background: var(--card);
+  border: 1px solid var(--border);    /* border requirement */
+  border-radius: var(--radius);
+  padding: var(--space-3);            /* padding requirement */
+  box-shadow: 0 8px 24px rgba(0,0,0,.25);
+}
+
+/* Buttons */
+.btn{
+  display:inline-block;
+  padding:.75rem 1rem;
+  border:1px solid var(--border);
+  border-radius: 12px;
+  background: linear-gradient(180deg,#1a2239,#121829);
+  color: var(--text);
+  text-decoration:none;
+  font-weight:600;
+  transition: transform .15s, border-color .15s, background .15s;
+}
+
+
+/* Inline link style (attribute selector demo below) */
+a[href^="https://"]{ /* attribute selector */
+  /* external links slightly stronger color */
+}
+.text-link{
+  color: var(--brand);
+  text-underline-offset:2px;
+  transition: color .15s, text-underline-offset .15s;
+}
+.text-link:hover{
+  color: var(--brand-600);
+  text-decoration: underline;
+  text-underline-offset:4px;
+}
+
+/* Grid examples */
+.grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+  gap: var(--space-3);
+  margin-block: var(--space-3);      /* margin requirement */
+}
+
+/* Table */
+table{
+  width:100%;
+  border-collapse: collapse;
+  border: 1px solid var(--border);
+  background: var(--card);
+  border-radius: 10px;
+  overflow:hidden;
+  margin-block: var(--space-2);
+}
+th, td{
+  padding:.75rem 1rem;
+  border-bottom:1px solid var(--border);
+  text-align:left;
+}
+thead th{
+  background: rgba(90,169,255,.10);
+}
+
+/* Lists */
+ul, ol{ padding-left: 1.2rem; }
+
+/* Footer */
+footer{
+  margin-top: var(--space-4);
+  padding-block: var(--space-3);
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  background: rgba(18,24,41,.6);
+}
+.footer-grid{
+  display:grid; gap: var(--space-2);
+}
+@media(min-width:720px){
+  .footer-grid{ grid-template-columns: 1fr auto; align-items:center; }
+}
+
+/* ID selector demo */
+#toc{
+  border:1px dashed var(--border);
+  padding: var(--space-2);
+  border-radius: 10px;
+  background: rgba(255,255,255,.02);
+}

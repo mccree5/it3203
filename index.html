@@ -1,12 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Practice Site</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Homepage | IT 3203 Project</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <h1>Hello, IT 3203!</h1>
-  <p>This is my practice site for web development.</p>
+  <!-- Header  -->
+
+  <header>
+    <div class="container nav" role="navigation" aria-label="Primary">
+      <div class="brand">IT 3203 • Web Project</div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="topic1.html">Topic 1</a>
+        <a href="topic2.html">Topic 2</a>
+        <a href="concepts.html">Key Concepts</a>
+        <a href="references.html">References</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero / Abstract -->
+    <section class="hero">
+      <h1>Project Title: Modern Web Foundations</h1>
+      <p>
+        <strong>Abstract:</strong> This site presents my research overview and
+        starter content on modern web development fundamentals. It will update
+        across milestones with deeper content and examples.
+      </p>
+      <!-- Example image (replace with your own asset) -->
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/250px-HTML5_logo_and_wordmark.svg.png" alt="Decorative project banner" style="margin-top:1rem; border:1px solid var(--border); border-radius:10px;" />
+    </section>
+
+    <!-- Key Terms (list requirement) -->
+    <section>
+      <h2>Key Terms</h2>
+      <ul>
+        <li>Semantic HTML</li>
+        <li>CSS Grid & Flexbox</li>
+        <li>Responsive Layout</li>
+        <li>Accessibility (a11y)</li>
+        <li>Typography & Color</li>
+      </ul>
+    </section>
+
+    <!-- Table of Contents with cards -->
+    <section aria-labelledby="toc-title" style="margin-top: var(--space-3);">
+      <h2 id="toc-title">Table of Contents</h2>
+      <div id="toc" class="grid">
+        <article class="card">
+          <h3>Topic 1: Semantic HTML</h3>
+          <p>Why semantics matter for structure, SEO, and accessibility.</p>
+          <a class="btn" href="topic1.html">Open Topic 1</a>
+        </article>
+        <article class="card">
+          <h3>Topic 2: CSS Layout</h3>
+          <p>Grid vs Flexbox and when to use each for clean layouts.</p>
+          <a class="btn" href="topic2.html">Open Topic 2</a>
+        </article>
+        <article class="card">
+          <h3>Key Concepts</h3>
+          <p>Concise explanations of core ideas (5–7 items).</p>
+          <a class="btn" href="concepts.html">View Concepts</a>
+        </article>
+        <article class="card">
+          <h3>References & Resources</h3>
+          <p>Citations and links to helpful readings and tools.</p>
+          <a class="btn" href="references.html">View References</a>
+        </article>
+        <article class="card">
+          <h3>About</h3>
+          <p>Who I am and what this project covers.</p>
+          <a class="btn" href="about.html">About Me</a>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer (consistent across pages) -->
+  <footer role="contentinfo">
+    <div class="container footer-grid">
+      <small>
+        <strong>Note:</strong> This is a class project for
+        <a class="text-link" href="https://ksuweb.github.io/IT3203/" target="_blank" rel="noopener noreferrer">
+          IT 3203 (KSU)
+        </a>.
+      </small>
+      <div>
+        <a class="text-link" href="https://validator.w3.org/" target="_blank" rel="noopener noreferrer">Validate HTML</a>
+        &nbsp;·&nbsp;
+        <a class="text-link" href="https://pages.github.com/" target="_blank" rel="noopener noreferrer">GitHub Pages</a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
