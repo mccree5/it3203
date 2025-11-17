@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Key Concepts | IT 3203</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Key Concepts | IT 3203 Project</title>
+  <!-- If concepts.html is at repo root, keep this path. If it's in /pages/, use ../styles.css -->
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!-- Shared header / nav -->
   <header>
-    <div class="container nav" role="navigation" aria-label="Primary">
+    <div class="container nav">
       <div class="brand">IT 3203 • Web Project</div>
-      <nav>
+      <nav aria-label="Primary">
         <a href="index.html">Home</a>
         <a href="topic1.html">Topic 1</a>
         <a href="topic2.html">Topic 2</a>
-        <a href="concepts.html">Key Concepts</a>
+        <a href="concepts.html" aria-current="page">Key Concepts</a>
         <a href="references.html">References</a>
+         <a href="quiz.html">Quiz</a>
         <a href="about.html">About</a>
+       
       </nav>
     </div>
   </header>
@@ -24,55 +28,174 @@
   <main class="container">
     <section class="hero">
       <h1>Key Concepts</h1>
-      <ol>
-        <li><strong>Semantic Structure:</strong> Appropriate elements convey meaning.</li>
-        <li><strong>Responsive Design:</strong> Layout adapts to viewport size.</li>
-        <li><strong>Color & Contrast:</strong> Ensure readable, accessible UIs.</li>
-        <li><strong>Typography:</strong> Hierarchy with headings, size, weight, and spacing.</li>
-        <li><strong>Grid vs Flex:</strong> 2D vs 1D layout decisions.</li>
-        <li><strong>Progressive Enhancement:</strong> Core content works without extras.</li>
-        <li><strong>Accessibility:</strong> Focus styles, alt text, and proper landmarks.</li>
-      </ol>
+      <p>Essential web foundations used in this project—each with quick tips and examples.</p>
     </section>
 
-    <!-- Table requirement -->
-    <section>
-      <h2>Quick Comparison Table</h2>
-      <table aria-label="Comparison of Grid and Flexbox">
-        <thead>
-          <tr>
-            <th>Property</th>
-            <th>Grid</th>
-            <th>Flexbox</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Axis</td>
-            <td>Two-dimensional</td>
-            <td>One-dimensional</td>
-          </tr>
-          <tr>
-            <td>Use Case</td>
-            <td>Page sections/cards</td>
-            <td>Navbars, toolbars, simple rows/columns</td>
-          </tr>
-          <tr>
-            <td>Gap Control</td>
-            <td><code>gap</code> rows &amp; columns</td>
-            <td><code>gap</code> along flow</td>
-          </tr>
-        </tbody>
-      </table>
+    <section aria-labelledby="kc-semantic">
+      <h2 id="kc-semantic">1) Semantic HTML</h2>
+      <div class="card">
+        <p>Use elements that carry meaning—<code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;aside&gt;</code>, <code>&lt;footer&gt;</code>. Improves accessibility, SEO, and maintenance.</p>
+        <div class="grid">
+          <article class="card">
+            <h3>Good</h3>
+            <pre class="code"><code>&lt;main&gt;
+  &lt;article&gt;
+    &lt;h2&gt;News&lt;/h2&gt;
+    &lt;p&gt;...&lt;/p&gt;
+  &lt;/article&gt;
+&lt;/main&gt;</code></pre>
+          </article>
+          <article class="card">
+            <h3>Avoid</h3>
+            <pre class="code"><code>&lt;div id="main"&gt;&lt;div class="article"&gt;...&lt;/div&gt;&lt;/div&gt;</code></pre>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="kc-headings">
+      <h2 id="kc-headings">2) Headings & Outline</h2>
+      <div class="card">
+        <p>Exactly one <code>&lt;h1&gt;</code> per page; then descend logically (<code>h2</code>, <code>h3</code> …). Give every <code>&lt;section&gt;</code> a heading for a clear, navigable outline.</p>
+        <ul>
+          <li>Don’t skip levels (e.g., avoid jumping from <code>h2</code> to <code>h4</code>).</li>
+          <li>Keep headings short, descriptive, and unique.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="kc-links">
+      <h2 id="kc-links">3) Links & Navigation</h2>
+      <div class="card">
+        <p>Write descriptive link text and keep a consistent menu on every page.</p>
+        <ul>
+          <li>Prefer “View syllabus” over “Click here”.</li>
+          <li>Use a single <code>&lt;nav&gt;</code> landmark for main menus; add <code>aria-label</code> only if you have multiple navs.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="kc-images">
+      <h2 id="kc-images">4) Alt Text & Captions (no images yet)</h2>
+      <div class="card">
+        <p>Plan for accessible media now even if you’ll add images later:</p>
+        <ul>
+          <li><strong>Alt</strong> describes the image’s purpose; decorative images use <code>alt=""</code>.</li>
+          <li>When you add an image, wrap it with a <code>&lt;figure&gt;</code> and a visible <code>&lt;figcaption&gt;</code>.</li>
+        </ul>
+        <pre class="code"><code>&lt;!-- later --&gt;
+&lt;figure&gt;
+  &lt;img src="img/example.png" alt="Short purpose-driven description"&gt;
+  &lt;figcaption&gt;Visible caption text.&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+      </div>
+    </section>
+
+    <section aria-labelledby="kc-forms">
+      <h2 id="kc-forms">5) Forms & Labels</h2>
+      <div class="card">
+        <p>Native inputs + associated labels = accessible forms. Provide feedback, visible focus, and clear errors.</p>
+        <pre class="code"><code>&lt;label for="email"&gt;Email&lt;/label&gt;
+&lt;input id="email" type="email" required&gt;</code></pre>
+        <ul>
+          <li>Keyboard test: complete the form with Tab/Enter only.</li>
+          <li>Use <code>aria-describedby</code> for error/help text when needed.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="kc-flex">
+      <h2 id="kc-flex">6) Flexbox (1-D Layout)</h2>
+      <div class="card">
+        <p>Arrange items in a row or column; great for navbars and toolbars.</p>
+        <pre class="code"><code>.toolbar{ display:flex; gap:.75rem; align-items:center; }
+.toolbar .spacer{ margin-left:auto; }</code></pre>
+        <ul>
+          <li>Use <code>gap</code> for spacing instead of margins between siblings.</li>
+          <li>Common: <code>justify-content</code>, <code>align-items</code>, <code>flex-direction</code>.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="kc-grid">
+      <h2 id="kc-grid">7) CSS Grid (2-D Layout)</h2>
+      <div class="card">
+        <p>Lay out rows and columns together. Useful for cards, galleries, and page sections.</p>
+        <pre class="code"><code>.grid{
+  display:grid;
+  gap:1rem;
+  grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
+}</code></pre>
+      </div>
+    </section>
+
+    <section aria-labelledby="kc-contrast">
+      <h2 id="kc-contrast">8) Color, Contrast & Fonts</h2>
+      <div class="card">
+        <p>On dark backgrounds, increase base size and weight; ensure sufficient contrast and visible focus.</p>
+        <ul>
+          <li>Readable base: 18–19px; headings heavier; line-height ~1.5–1.7.</li>
+          <li>Don’t rely on color alone to signal state—use text/icons/borders too.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="kc-performance" style="margin-top:var(--space-3);">
+      <h2 id="kc-performance">9) Performance Basics</h2>
+      <div class="card">
+        <ul>
+          <li>One CSS file (already done), compress images when you add them, and lazy-load noncritical media.</li>
+          <li>Keep JS minimal and defer nonessential scripts.</li>
+        </ul>
+        <pre class="code"><code>&lt;img
+  src="img/card-800.jpg"
+  srcset="img/card-800.jpg 800w, img/card-1200.jpg 1200w"
+  sizes="(max-width: 768px) 100vw, 720px"
+  alt="Responsive card example" loading="lazy"&gt;</code></pre>
+      </div>
+    </section>
+
+    <section aria-labelledby="kc-table" style="margin-top:var(--space-4);">
+      <h2 id="kc-table">10) Quick Reference</h2>
+      <div class="card">
+        <table class="table">
+          <caption>Concept → Why it matters → One tip</caption>
+          <thead>
+            <tr>
+              <th scope="col">Concept</th>
+              <th scope="col">Why It Matters</th>
+              <th scope="col">One Tip</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Semantic HTML</td><td>Meaningful structure for users & SEO</td><td>Prefer native elements</td></tr>
+            <tr><td>Headings</td><td>Clear document outline</td><td>One H1; descend logically</td></tr>
+            <tr><td>Links</td><td>Faster navigation & comprehension</td><td>Descriptive link text</td></tr>
+            <tr><td>Forms</td><td>Accessible input collection</td><td>Every input has a label</td></tr>
+            <tr><td>Flexbox</td><td>Align/distribute items in a line</td><td>Use <code>gap</code></td></tr>
+            <tr><td>Grid</td><td>Rows & columns together</td><td><code>minmax()</code> + <code>auto-fit</code></td></tr>
+            <tr><td>Contrast & Fonts</td><td>Readability on dark UI</td><td>Base 18px+, bold headings</td></tr>
+            <tr><td>Performance</td><td>Faster, smoother UX</td><td>Compress & lazy-load images</td></tr>
+          </tbody>
+        </table>
+      </div>
     </section>
   </main>
 
-  <footer role="contentinfo">
+  <!-- Shared footer -->
+  <footer>
     <div class="container footer-grid">
-      <small><strong>Note:</strong> This is a class project for
-        <a class="text-link" href="https://ksuweb.github.io/IT3203/" target="_blank" rel="noopener noreferrer">IT 3203 (KSU)</a>.
+      <small>
+        <strong>Note:</strong> This is a class project for
+        <a class="text-link" href="https://ksuweb.github.io/IT3203/" target="_blank" rel="noopener noreferrer">
+          IT 3203 (KSU)
+        </a>.
       </small>
-      <div><a class="text-link" href="https://validator.w3.org/" target="_blank" rel="noopener noreferrer">Validate HTML</a></div>
+      <div>
+        <a class="text-link" href="https://validator.w3.org/" target="_blank" rel="noopener noreferrer">Validate HTML</a>
+        &nbsp;·&nbsp;
+        <a class="text-link" href="https://pages.github.com/" target="_blank" rel="noopener noreferrer">GitHub Pages</a>
+      </div>
     </div>
   </footer>
 </body>
