@@ -1,13 +1,12 @@
 /* 
-CSS Implementations
-- Theme via CSS variables; simple business style (clean, readable).
-- Selectors: element (body, h1), class (.card, .grid), id (#toc), attribute (a[href^="https://"]),
-  pseudo (:hover, :focus-visible).
-- Layout: .grid uses CSS Grid (auto-fit/minmax), .nav uses Flexbox.
-- UI details: padding/margins, borders, hover/focus states, color + font settings.
-- Accessibility: visible focus ring, adequate contrast, alt text expected in HTML.
+IT 3203 • styles.css
+- Single shared stylesheet for all pages
+- Dark, clean business theme + responsive layout
+- Grid (cards), Flex (nav), hover/focus states, larger typography
+- Mobile hamburger nav, color-coded quiz feedback
 */
 
+/* ========== Theme variables ========== */
 :root{
   --bg: #0b0f1a;
   --card: #121829;
@@ -17,227 +16,177 @@ CSS Implementations
   --brand: #5aa9ff;
   --brand-600: #2f86ef;
   --ring: #8bd1ff;
+
   --radius: 14px;
   --space-1: .5rem;
   --space-2: 1rem;
   --space-3: 1.5rem;
   --space-4: 2rem;
   --maxw: 1100px;
+
+  /* Global typography scale */
+  --base-font-size: 18px;
+  --heading-scale-1: 2.0rem;  /* h1 */
+  --heading-scale-2: 1.6rem;  /* h2 */
+  --heading-scale-3: 1.25rem; /* h3/h4 */
 }
 
-/* ---- Reset-ish ---- */
+/* ========== Reset-ish ========== */
 *{ box-sizing: border-box; }
 html, body{ margin:0; padding:0; }
-img{ max-width:100%; display:block; }
+img{ max-width:100%; height:auto; display:block; }
 
-/* ---- Body (element selector) ---- */
+/* ========== Base ========== */
+html{ font-size: var(--base-font-size); }
 body{
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, Inter, Arial, sans-serif;
+  background: var(--bg);
   color: var(--text);
-  background:#0b0f1a;
   line-height: 1.6;
 }
-h1,h2,h3{ line-height:1.25; }
+h1,h2,h3{ line-height:1.25; margin:0 0 .5rem 0; }
+h1{ font-size: var(--heading-scale-1); font-weight: 800; }
+h2{ font-size: var(--heading-scale-2); font-weight: 700; }
+h3, h4{ font-size: var(--heading-scale-3); font-weight: 700; }
 p{ margin: 0 0 var(--space-2) 0; }
+ul, ol{ padding-left: 1.2rem; }
 
-/* ---- Layout helpers ---- */
-.container{
-  width: min(100% - 2rem, var(--maxw));
-  margin-inline: auto;
+a{
+  color:#cfe3ff;
+  text-decoration:none;
+  transition: color .15s ease, text-shadow .15s ease, text-underline-offset .15s ease;
+}
+a:hover{
+  color:#fff;
+  text-shadow:0 0 8px rgba(140,197,255,.35);
+}
+a:focus-visible{
+  outline:none;
+  box-shadow:0 0 0 3px var(--ring);
+  border-radius:6px;
+}
+a[href^="http"]:hover{ text-decoration: underline; }
+.text-link{
+  color:var(--brand);
+  text-underline-offset:2px;
+}
+.text-link:hover{
+  color:var(--brand-600);
+  text-decoration:underline;
+  text-underline-offset:4px;
 }
 
-/* Header / Navbar */
+/* ========== Layout helpers ========== */
+.container{
+  width: min(100% - 2rem, var(--maxw));
+  margin-inline:auto;
+  padding-inline: 1rem; /* default side padding */
+}
+@media (min-width: 640px){ .container{ padding-inline: 1.5rem; } }
+@media (min-width:1024px){ .container{ padding-inline: 2rem; } }
+
+/* ========== Header / Navbar ========== */
 header{
   position: sticky; top:0; z-index:10;
-  background: rgba(19, 26, 46, 0.6);
+  background: rgba(19,26,46,.6);
   backdrop-filter: blur(6px) saturate(140%);
-  border-bottom: 1px solid var(--border);
+  border-bottom:1px solid var(--border);
 }
 .nav{
   display:flex; align-items:center; justify-content:space-between;
   padding-block:.75rem;
 }
-.brand{ font-weight:800; letter-spacing:.3px; }
+.brand{ font-size:1.125rem; font-weight:800; letter-spacing:.2px; }
+
+/* Top nav links */
 .nav a{
   color: var(--muted);
-  text-decoration: none;
-  padding:.5rem .75rem;           /* padding requirement */
-  border-radius: 10px;
+  padding:.5rem .75rem;
+  border-radius:10px;
   transition: color .2s, background-color .2s, text-underline-offset .2s;
 }
-/* Hover effect on links */
 .nav a:hover{
   color: var(--text);
   background: rgba(90,169,255,.12);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-/* Focus style for keyboard users */
 a:focus-visible, button:focus-visible{
   outline: none;
   box-shadow: 0 0 0 3px var(--ring);
   border-radius: 12px;
 }
 
-/* Hero / intro spacing */
-.hero{ padding-block: var(--space-4); }
+/* ========== Mobile nav toggle ========== */
+.nav-toggle{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:44px; height:44px; /* finger-friendly */
+  border:1px solid var(--border);
+  border-radius:10px;
+  background: linear-gradient(180deg,#1e2742,#11182d);
+  color: var(--text);
+  cursor:pointer;
+}
 
-/* Cards (borders + margins + padding) */
+#primary-nav{
+  display:none;              /* collapsed by default on small screens */
+  flex-direction:column;
+  gap:.25rem;
+  margin-top:.5rem;
+}
+#primary-nav.open{ display:flex; }
+
+/* On wider screens, show the menu inline and hide the toggle */
+@media (min-width:768px){
+  .nav-toggle{ display:none; }
+  #primary-nav{
+    display:flex !important;
+    flex-direction:row;
+    gap:.25rem;
+    margin-top:0;
+  }
+}
+
+/* ========== Hero / Sections ========== */
+.hero{ padding-block: var(--space-4); }
+section{ padding-block: .25rem .75rem; } /* gentle vertical rhythm */
+
+/* ========== Cards ========== */
 .card{
   background: var(--card);
-  border: 1px solid var(--border);    /* border requirement */
-  border-radius: var(--radius);
-  padding: var(--space-3);            /* padding requirement */
-  box-shadow: 0 8px 24px rgba(0,0,0,.25);
-}
-
-/* Buttons */
-.btn{
-  display:inline-block;
-  padding:.75rem 1rem;
   border:1px solid var(--border);
-  border-radius: 12px;
-  background: linear-gradient(180deg,#1a2239,#121829);
-  color: var(--text);
-  text-decoration:none;
-  font-weight:600;
-  transition: transform .15s, border-color .15s, background .15s;
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  box-shadow: 0 8px 24px rgba(0,0,0,.25);
+  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
 }
+.card:hover{
+  transform: translateY(-2px);
+  border-color: var(--brand);
+  box-shadow: 0 10px 28px rgba(0,0,0,.35);
+}
+.card > :first-child{ margin-top:0; }
+.card > :last-child{ margin-bottom:0; }
 
-
-/* Inline link style (attribute selector */
-a[href^="https://"]{ /* attribute selector */
-  /* external links slightly stronger color */
-}
-.text-link{
-  color: var(--brand);
-  text-underline-offset:2px;
-  transition: color .15s, text-underline-offset .15s;
-}
-.text-link:hover{
-  color: var(--brand-600);
-  text-decoration: underline;
-  text-underline-offset:4px;
-}
-
-/* Grid examples */
-.grid{
-  display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
-  gap: var(--space-3);
-  margin-block: var(--space-3);      /* margin requirement */
-}
-
-/* Table */
-table{
-  width:100%;
-  border-collapse: collapse;
-  border: 1px solid var(--border);
-  background: var(--card);
-  border-radius: 10px;
-  overflow:hidden;
-  margin-block: var(--space-2);
-}
-th, td{
-  padding:.75rem 1rem;
-  border-bottom:1px solid var(--border);
-  text-align:left;
-}
-thead th{
-  background: rgba(90,169,255,.10);
-}
-
-/* Lists */
-ul, ol{ padding-left: 1.2rem; }
-
-/* Footer */
-footer{
-  margin-top: var(--space-4);
-  padding-block: var(--space-3);
-  border-top: 1px solid var(--border);
-  color: var(--muted);
-  background: rgba(18,24,41,.6);
-}
-.footer-grid{
-  display:grid; gap: var(--space-2);
-}
-@media(min-width:720px){
-  .footer-grid{ grid-template-columns: 1fr auto; align-items:center; }
-}
-
-/* ID selector demo */
-#toc{
-  border:1px dashed var(--border);
-  padding: var(--space-2);
-  border-radius: 10px;
-  background: rgba(255,255,255,.02);
-}
-/* ====== Global typography: larger & clearer on dark bg ====== */
-:root{
-  /* tweak if you want a bit larger/smaller globally */
-  --base-font-size: 18px;            /* was ~16px */
-  --heading-scale-1: 2.0rem;         /* h1 */
-  --heading-scale-2: 1.6rem;         /* h2 */
-  --heading-scale-3: 1.25rem;        /* h3/h4 */
-}
-
-html{ font-size: var(--base-font-size); }
-
-body{
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Inter, Arial, sans-serif;
-  line-height: 1.6;                  /* looser for readability */
-  color: var(--text);                /* you already have dark theme colors */
-}
-
-h1{ font-size: var(--heading-scale-1); line-height: 1.2; font-weight: 800; }
-h2{ font-size: var(--heading-scale-2); line-height: 1.25; font-weight: 700; }
-h3, h4{ font-size: var(--heading-scale-3); line-height: 1.35; font-weight: 700; }
-
-/* Make nav/brand a touch larger for balance */
-.brand{ font-size: 1.125rem; font-weight: 800; letter-spacing: .2px; }
-nav a{ font-size: 1.0625rem; }
-
-/* Paragraphs and lists slightly larger without touching html size */
-p, li{ font-size: 1.0625rem; }
-
-/* ====== Links: hover/focus for dark background ====== */
-a{
-  color: #cfe3ff;                    /* readable on dark */
-  text-decoration: none;
-  transition: color .15s ease, text-shadow .15s ease;
-}
-a:hover{
-  color: #ffffff;
-  text-shadow: 0 0 8px rgba(140,197,255,.35);
-}
-a:focus-visible{
-  outline: none;
-  box-shadow: 0 0 0 3px var(--ring);
-  border-radius: 6px;
-}
-
-/* External links (attribute selector already shows your selector variety) */
-a[href^="http"]:hover{
-  text-decoration: underline;
-}
-
-/* ====== Buttons (from before) — slightly bigger + hover ====== */
+/* ========== Buttons ========== */
 button,
 .btn,
 input[type="submit"],
 input[type="button"],
 input[type="reset"]{
-  display: inline-block;
-  padding: 1rem 1.2rem;              /* a bit bigger */
-  border: 1px solid var(--border);
-  border-radius: 12px;
+  display:inline-block;
+  padding: 1rem 1.2rem;
+  border:1px solid var(--border);
+  border-radius:12px;
   background: linear-gradient(180deg,#1e2742,#11182d);
-  color: #ffffff;
-  font-weight: 800;                   /* stand out */
-  font-size: 1.125rem;                /* ~18px */
-  line-height: 1.1;
-  letter-spacing: .2px;
-  cursor: pointer;
+  color:#fff;
+  font-weight:800;
+  font-size:1.125rem;
+  line-height:1.1;
+  letter-spacing:.2px;
+  cursor:pointer;
   transition: transform .15s ease, border-color .15s ease, background .15s ease, box-shadow .15s ease, color .15s ease;
 }
 button:hover,
@@ -249,42 +198,61 @@ input[type="reset"]:hover{
   background: linear-gradient(180deg,#2a3a62,#151d36);
   transform: translateY(-1px);
   box-shadow: 0 8px 24px rgba(0,0,0,.35), 0 0 0 3px rgba(90,169,255,.15);
-  color: #fff;
-}
-button:focus-visible,
-.btn:focus-visible,
-input[type="submit"]:focus-visible,
-input[type="button"]:focus-visible,
-input[type="reset"]:focus-visible{
-  outline: none;
-  box-shadow: 0 0 0 3px var(--ring), 0 8px 24px rgba(0,0,0,.35);
-  border-color: var(--brand);
 }
 
-/* ====== Cards & interactive blocks: subtle hover lift ====== */
-.card{
-  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
-}
-.card:hover{
-  transform: translateY(-2px);
-  border-color: var(--brand);
-  box-shadow: 0 10px 28px rgba(0,0,0,.35);
+/* ========== Grid (cards layout) ========== */
+.grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+  gap: 1.25rem;
+  margin-block: var(--space-3);
 }
 
-/* Grid items look interactive when hovered */
-.grid > *:hover{
-  border-color: var(--brand);
+/* ========== Tables ========== */
+.table-wrap{
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  border-radius:12px;
+}
+table{
+  width:100%;
+  border-collapse: collapse;
+  border: 1px solid var(--border);
+  background: var(--card);
+  border-radius: 10px;
+  overflow:hidden;
+  margin-block: var(--space-2);
+}
+th, td{
+  padding:.85rem 1rem;
+  border-bottom:1px solid var(--border);
+  text-align:left;
+  vertical-align:top;
+}
+thead th{ background: rgba(90,169,255,.10); }
+
+/* ========== Footer ========== */
+footer{
+  margin-top: var(--space-4);
+  padding-block: var(--space-3);
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  background: rgba(18,24,41,.6);
+}
+.footer-grid{ display:grid; gap: var(--space-2); }
+@media(min-width:720px){
+  .footer-grid{ grid-template-columns: 1fr auto; align-items:center; }
 }
 
-/* ====== Quiz result tiers already defined; ensure readable size ====== */
-#overall{ font-size: 1.125rem; font-weight: 800; }
-#score-badge{ font-size: 1rem; }
-
-/* ====== Respect reduced motion ====== */
-@media (prefers-reduced-motion: reduce){
-  *{ transition: none !important; }
+/* ========== ID demo (TOC box) ========== */
+#toc{
+  border:1px dashed var(--border);
+  padding: var(--space-2);
+  border-radius: 10px;
+  background: rgba(255,255,255,.02);
 }
 
+/* ========== Code blocks ========== */
 pre.code{
   background:#0e1528;
   border:1px solid var(--border);
@@ -293,68 +261,16 @@ pre.code{
   overflow:auto;
   font-size:.95rem;
 }
-.table{
-  width:100%;
-  border-collapse:collapse;
-  background:var(--card);
-}
-.table th,.table td{
-  padding:.75rem 1rem;
-  border:1px solid var(--border);
-  vertical-align:top;
-}
-.table thead th{
-  background:rgba(255,255,255,.03);
-  text-align:left;
-}
-/* === Readability padding tune-up (Topic pages) === */
 
-/* Wider side padding for the main container */
-.container{
-  padding-inline: 1rem;                 /* L/R padding on small screens */
-}
-@media (min-width: 640px){
-  .container{ padding-inline: 1.5rem; }
-}
-@media (min-width: 1024px){
-  .container{ padding-inline: 2rem; }   /* comfy on desktops */
-}
+/* ========== Media ========== */
+.media{ border-radius:12px; overflow:hidden; }
+.media figcaption{ padding:.85rem 1.25rem; color:var(--muted); }
 
-/* Bigger gaps between items in grids */
-.grid{ gap: 1.25rem; }
-
-/* Cards: add inner padding so text doesn't touch the border */
-.card{
-  padding: 1rem 1.25rem;
-  border-radius: 12px;
-}
-.card > :first-child{ margin-top: 0; }  /* remove accidental top bump */
-.card > :last-child{ margin-bottom: 0; }
-
-/* Code blocks inside cards: a bit of offset from the card edge */
-pre.code{ margin: .5rem 0 0; }
-
-/* Figures: room for captions */
-.media{ border-radius: 12px; }
-.media figcaption{ padding: .85rem 1.25rem; }
-
-/* Tables: room around cell text */
-.table th,
-.table td{
-  padding: .85rem 1rem;
-}
-
-/* Hero/section: subtle vertical padding */
-.hero{ padding-block: .5rem 1rem; }
-section{ padding-block: .25rem .75rem; }  /* gentle top/bottom space */
-/* ====== Quiz correctness styles ====== */
-
-/* Feedback line under each question */
+/* ========== Quiz styling (feedback & coloring) ========== */
 .q-feedback{ margin-top:.5rem; font-weight:700; }
-.q-feedback.correct{ color:#16a34a; }      /* green */
-.q-feedback.incorrect{ color:#ff6b6b; }    /* red */
+.q-feedback.correct{ color:#16a34a; }     /* green */
+.q-feedback.incorrect{ color:#ff6b6b; }   /* red */
 
-/* Highlight the whole question block */
 .quiz-form fieldset{
   border:1px solid var(--border);
   border-radius:12px;
@@ -374,7 +290,7 @@ section{ padding-block: .25rem .75rem; }  /* gentle top/bottom space */
   background: rgba(255,107,107,.06);
 }
 
-/* Style each option label so selections can be colored */
+/* Option labels so we can color the user selection & right answers */
 label.choice{
   display:block;
   border:1px solid var(--border);
@@ -391,8 +307,34 @@ label.choice.incorrect{
   border-color:#ff6b6b;
   background: rgba(255,107,107,.12);
 }
-/* When user got it wrong, also show the right answer */
+/* When the user is wrong, also show the right answer */
 label.choice.answer{
   border-style: dashed;
   border-color:#16a34a;
+}
+
+/* Quiz results block */
+#overall{ font-size: 1.125rem; font-weight: 800; }
+#score-badge{ font-size: 1rem; }
+
+/* Actions row */
+.quiz-actions{
+  display:flex; gap:.75rem; flex-wrap:wrap;
+  margin-top:1rem;
+}
+
+/* ========== Utilities ========== */
+/* Visually hidden (for accessible, invisible labels) */
+.sr-only{
+  position:absolute !important;
+  width:1px; height:1px;
+  padding:0; margin:-1px;
+  overflow:hidden;
+  clip:rect(0 0 0 0);
+  white-space:nowrap; border:0;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  *{ transition: none !important; scroll-behavior: auto !important; }
 }

@@ -1,36 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Quiz | IT 3203 Project</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
 </head>
-
-<script src="app.js" defer></script>
-
 <body>
-  <!--
-    IT 3203 • Milestone 2 — Quiz
-    - Types: 1 fill-in-the-blank, 3 single-choice, 1 multi-select.
-    - On submit: show score, tiered result message, and per-question feedback.
-    - Reset clears inputs and results.
-  -->
+  <!-- Header / nav (same on every page) -->
   <header>
-   <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle menu">
-  ☰
-</button>
-<nav id="primary-nav" aria-label="Primary">
-  <a href="index.html">Home</a>
-  <a href="topic1.html">Topic 1</a>
-  <a href="topic2.html">Topic 2</a>
-  <a href="concepts.html">Key Concepts</a>
-  <a href="references.html">References</a>
-  <a href="quiz.html">Quiz</a>
-  <a href="about.html">About</a>
-</nav>
+    <div class="container nav">
+      <div class="brand">IT 3203 • Web Project</div>
 
-    
+      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle menu">☰</button>
+
+      <nav id="primary-nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="topic1.html">Topic 1</a>
+        <a href="topic2.html">Topic 2</a>
+        <a href="concepts.html">Key Concepts</a>
+        <a href="references.html">References</a>
+        <a href="quiz.html" aria-current="page">Quiz</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
   </header>
 
   <main class="container">
@@ -48,7 +41,7 @@
         <fieldset>
           <legend><strong>Q1 (Fill-in-the-blank):</strong> What HTML element is used to mark the main content of a page?</legend>
           <label for="q1" class="sr-only">Your answer</label>
-          <input id="q1" name="q1" type="text" placeholder="Answer here">
+          <input id="q1" name="q1" type="text" placeholder="Answer here" />
           <div class="q-feedback" id="q1-feedback" aria-live="polite"></div>
         </fieldset>
 
@@ -56,13 +49,13 @@
         <fieldset>
           <legend><strong>Q2 (Single choice):</strong> CSS Grid is best suited for:</legend>
           <label class="choice">
-            <input type="radio" name="q2" value="a"> Laying out items along a single row only
+            <input type="radio" name="q2" value="a" /> Laying out items along a single row only
           </label>
           <label class="choice">
-            <input type="radio" name="q2" value="b"> Two-dimensional layouts (rows and columns)
+            <input type="radio" name="q2" value="b" /> Two-dimensional layouts (rows and columns)
           </label>
           <label class="choice">
-            <input type="radio" name="q2" value="c"> Styling text emphasis
+            <input type="radio" name="q2" value="c" /> Styling text emphasis
           </label>
           <div class="q-feedback" id="q2-feedback" aria-live="polite"></div>
         </fieldset>
@@ -71,13 +64,13 @@
         <fieldset>
           <legend><strong>Q3 (Single choice):</strong> Which is a semantic HTML element?</legend>
           <label class="choice">
-            <input type="radio" name="q3" value="a"> <code>&lt;div&gt;</code>
+            <input type="radio" name="q3" value="a" /> <code>&lt;div&gt;</code>
           </label>
           <label class="choice">
-            <input type="radio" name="q3" value="b"> <code>&lt;span&gt;</code>
+            <input type="radio" name="q3" value="b" /> <code>&lt;span&gt;</code>
           </label>
           <label class="choice">
-            <input type="radio" name="q3" value="c"> <code>&lt;article&gt;</code>
+            <input type="radio" name="q3" value="c" /> <code>&lt;article&gt;</code>
           </label>
           <div class="q-feedback" id="q3-feedback" aria-live="polite"></div>
         </fieldset>
@@ -86,13 +79,13 @@
         <fieldset>
           <legend><strong>Q4 (Single choice):</strong> The best attribute for providing text alternatives for images is:</legend>
           <label class="choice">
-            <input type="radio" name="q4" value="a"> <code>title</code>
+            <input type="radio" name="q4" value="a" /> <code>title</code>
           </label>
           <label class="choice">
-            <input type="radio" name="q4" value="b"> <code>alt</code>
+            <input type="radio" name="q4" value="b" /> <code>alt</code>
           </label>
           <label class="choice">
-            <input type="radio" name="q4" value="c"> <code>data-desc</code>
+            <input type="radio" name="q4" value="c" /> <code>data-desc</code>
           </label>
           <div class="q-feedback" id="q4-feedback" aria-live="polite"></div>
         </fieldset>
@@ -101,16 +94,16 @@
         <fieldset>
           <legend><strong>Q5 (Multi-select):</strong> Select all properties commonly used with Flexbox.</legend>
           <label class="choice">
-            <input type="checkbox" name="q5" value="justify-content"> <code>justify-content</code>
+            <input type="checkbox" name="q5" value="justify-content" /> <code>justify-content</code>
           </label>
           <label class="choice">
-            <input type="checkbox" name="q5" value="grid-template-columns"> <code>grid-template-columns</code>
+            <input type="checkbox" name="q5" value="grid-template-columns" /> <code>grid-template-columns</code>
           </label>
           <label class="choice">
-            <input type="checkbox" name="q5" value="align-items"> <code>align-items</code>
+            <input type="checkbox" name="q5" value="align-items" /> <code>align-items</code>
           </label>
           <label class="choice">
-            <input type="checkbox" name="q5" value="flex-direction"> <code>flex-direction</code>
+            <input type="checkbox" name="q5" value="flex-direction" /> <code>flex-direction</code>
           </label>
           <div class="q-feedback" id="q5-feedback" aria-live="polite"></div>
         </fieldset>
@@ -136,6 +129,7 @@
     </section>
   </main>
 
+  <!-- Footer -->
   <footer>
     <div class="container footer-grid">
       <small>
@@ -152,211 +146,7 @@
     </div>
   </footer>
 
- 
-<script>
-/* ==========================================================
-   IT 3203 • Milestone 2 — Quiz Logic with color coding
-   - Adds .is-correct / .is-incorrect to each fieldset
-   - Colors selected labels: .correct / .incorrect
-   - Shows the correct option with .answer when user is wrong
-========================================================== */
-(function () {
-  const form = document.getElementById('quiz-form');
-  const resultsCard = document.getElementById('results');
-  const overallEl = document.getElementById('overall');
-  const scoreBadge = document.getElementById('score-badge');
-  const perList = document.getElementById('per-question-list');
-
-  const normalize = s => (s || '').toString().trim().toLowerCase();
-  const stripAngles = str =>
-    str.replace(/</g, '').replace(/&lt;/g, '')
-       .replace(/>/g, '').replace(/&gt;/g, '');
-
-  function setFieldsetState(el, ok){
-    if (!el) return;
-    el.classList.remove('is-correct','is-incorrect');
-    el.classList.add(ok ? 'is-correct' : 'is-incorrect');
-  }
-  function clearChoicesState(inputs){
-    inputs.forEach(inp => {
-      const lab = inp.closest('label');
-      if (lab) lab.classList.remove('correct','incorrect','answer');
-      inp.classList.remove('correct','incorrect');
-    });
-  }
-
-  function checkQ1() {
-    const input = document.getElementById('q1');
-    const fs = input.closest('fieldset');
-    const val = normalize(stripAngles(input.value));
-    const ok = (val === 'main');
-
-    setFieldsetState(fs, ok);
-
-    const fb = document.getElementById('q1-feedback');
-    fb.textContent = ok ? 'Correct' : 'Incorrect — Correct answer: <main>';
-    fb.className = 'q-feedback ' + (ok ? 'correct' : 'incorrect');
-
-    // Input outline color (optional)
-    input.classList.remove('correct','incorrect');
-    input.classList.add(ok ? 'correct' : 'incorrect');
-
-    return ok ? 1 : 0;
-  }
-
-  function getChecked(name) {
-    return Array.from(document.querySelectorAll('input[name="' + name + '"]:checked')).map(i => i.value);
-  }
-
-  function checkSingle(name, correctVal, fbId, correctText) {
-    const group = Array.from(document.querySelectorAll('input[name="' + name + '"]'));
-    const fs = group[0] ? group[0].closest('fieldset') : null;
-
-    const pick = getChecked(name)[0] || null;
-    const ok = pick === correctVal;
-
-    // Color the fieldset
-    setFieldsetState(fs, ok);
-
-    // Clear previous label states
-    clearChoicesState(group);
-
-    // Mark selected label correct/incorrect
-    group.forEach(inp => {
-      const lab = inp.closest('label');
-      if (!lab) return;
-      if (inp.checked) lab.classList.add(ok ? 'correct' : 'incorrect');
-      // If wrong, also mark the correct answer visibly
-      if (!ok && inp.value === correctVal) lab.classList.add('answer');
-    });
-
-    // Inline feedback line
-    const fb = document.getElementById(fbId);
-    fb.textContent = ok ? 'Correct' : 'Incorrect — Correct answer: ' + correctText;
-    fb.className = 'q-feedback ' + (ok ? 'correct' : 'incorrect');
-
-    return ok ? 1 : 0;
-  }
-
-  function checkMulti(name, correctSet, fbId) {
-    const group = Array.from(document.querySelectorAll('input[name="' + name + '"]'));
-    const fs = group[0] ? group[0].closest('fieldset') : null;
-
-    const picks = new Set(getChecked(name));
-    const expected = new Set(correctSet);
-
-    // exact set match
-    let ok = (picks.size === expected.size);
-    if (ok) { for (const v of expected) { if (!picks.has(v)) { ok = false; break; } } }
-
-    setFieldsetState(fs, ok);
-
-    // Clear labels, then color checked items and reveal missed correct ones
-    clearChoicesState(group);
-    group.forEach(inp => {
-      const lab = inp.closest('label');
-      if (!lab) return;
-      const isExpected = expected.has(inp.value);
-      if (inp.checked) {
-        lab.classList.add(isExpected ? 'correct' : 'incorrect');
-      } else if (!ok && isExpected) {
-        // user missed this correct choice
-        lab.classList.add('answer');
-      }
-    });
-
-    const fb = document.getElementById(fbId);
-    const answerText = Array.from(expected).join(', ');
-    fb.textContent = ok ? 'Correct' : 'Incorrect — Correct answers: ' + answerText;
-    fb.className = 'q-feedback ' + (ok ? 'correct' : 'incorrect');
-
-    return ok ? 1 : 0;
-  }
-
-  function perQuestionSummary(items) {
-    if (!perList) return;
-    perList.innerHTML = '';
-    items.forEach((it, idx) => {
-      const li = document.createElement('li');
-      li.textContent = 'Q' + (idx + 1) + ': ' + (it.ok ? 'Correct' : 'Incorrect') + ' — ' + it.msg;
-      perList.appendChild(li);
-    });
-  }
-
-  function tierForScore(total) {
-    switch (total) {
-      case 1: return { msg: 'Try again', tier: 'tier-1' };
-      case 2: return { msg: 'Not quite', tier: 'tier-2' };
-      case 3: return { msg: 'You passed', tier: 'tier-3' };
-      case 4: return { msg: 'Good job', tier: 'tier-4' };
-      case 5: return { msg: 'Excellent!', tier: 'tier-5' };
-      default: return { msg: 'Keep practicing', tier: 'tier-0' }; // 0/5
-    }
-  }
-
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-
-    const s1 = checkQ1();
-    const s2 = checkSingle('q2', 'b', 'q2-feedback', 'Two-dimensional layouts');
-    const s3 = checkSingle('q3', 'c', 'q3-feedback', '<article>');
-    const s4 = checkSingle('q4', 'b', 'q4-feedback', 'alt');
-    const s5 = checkMulti('q5', ['justify-content','align-items','flex-direction'], 'q5-feedback');
-
-    const total = s1 + s2 + s3 + s4 + s5;
-
-    // Show results
-    resultsCard.hidden = false;
-
-    // Score badge + tiered message/colors
-    scoreBadge.textContent = 'Score: ' + total + '/5';
-    const { msg, tier } = tierForScore(total);
-    overallEl.textContent = 'Result: ' + msg;
-    scoreBadge.className = 'score-badge ' + tier;
-    overallEl.className = tier;
-
-    // Per-question summary
-    const msgs = [
-      { ok: !!s1, msg: 'Element for main page content is <main>.' },
-      { ok: !!s2, msg: 'Grid is for two-dimensional layouts (rows + columns).' },
-      { ok: !!s3, msg: '<article> is semantic; <div>/<span> are generic.' },
-      { ok: !!s4, msg: 'Use alt for meaningful image text alternatives.' },
-      { ok: !!s5, msg: 'Flexbox commonly uses justify-content, align-items, flex-direction.' }
-    ];
-    perQuestionSummary(msgs);
-
-    resultsCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
-
-  document.getElementById('reset-btn').addEventListener('click', function () {
-    form.reset();
-
-    // Clear feedback text/classes
-    document.querySelectorAll('.q-feedback').forEach(el => {
-      el.textContent = '';
-      el.className = 'q-feedback';
-    });
-
-    // Clear fieldset and label states
-    document.querySelectorAll('.quiz-form fieldset').forEach(fs => {
-      fs.classList.remove('is-correct','is-incorrect');
-    });
-    document.querySelectorAll('label.choice').forEach(lab => {
-      lab.classList.remove('correct','incorrect','answer');
-    });
-    document.querySelectorAll('#quiz-form input').forEach(inp => {
-      inp.classList.remove('correct','incorrect');
-    });
-
-    // Hide results
-    resultsCard.hidden = true;
-    overallEl.textContent = '';
-    overallEl.className = '';
-    scoreBadge.textContent = 'Score: 0/5';
-    scoreBadge.className = 'score-badge';
-    if (perList) perList.innerHTML = '';
-  });
-})();
-</script>
-
-
+  <!-- Shared JS -->
+  <script src="app.js" defer></script>
+</body>
+</html>

@@ -3,16 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Topic 1 | Semantic HTML</title>
+  <title>Topic 1 | Semantic HTML & Accessibility</title>
   <link rel="stylesheet" href="styles.css" />
+  <!-- Dev note: This page demonstrates headings, lists, images+alt, and a table (Milestone reqs). -->
 </head>
 <body>
+  <!-- ===== Shared header / nav ===== -->
   <header>
-    <div class="container nav" role="navigation" aria-label="Primary">
-      <div class="brand">IT 3203 | Web Project</div>
-      <nav>
+    <div class="container nav">
+      <div class="brand">IT 3203 • Web Project</div>
+
+      <!-- Mobile hamburger -->
+      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle menu">☰</button>
+
+      <!-- Primary nav (same links on every page) -->
+      <nav id="primary-nav" aria-label="Primary">
         <a href="index.html">Home</a>
-        <a href="topic1.html">Topic 1</a>
+        <a href="topic1.html" aria-current="page">Topic 1</a>
         <a href="topic2.html">Topic 2</a>
         <a href="concepts.html">Key Concepts</a>
         <a href="references.html">References</a>
@@ -21,104 +28,146 @@
       </nav>
     </div>
   </header>
-<!--header-->
-  <section class="hero">
-  <h1>Semantic HTML & Accessibility</h1>
-  <p>
-    Semantic HTML gives meaning to content and creates a clear document outline for users,
-    screen readers, and search engines. Accessibility (a11y) builds on semantics to ensure
-    everyone can use your site regardless of ability, device, or context.
-  </p>
-</section>
 
-<section aria-labelledby="sec-semantics">
-  <h2 id="sec-semantics">Why Semantic Elements Matter</h2>
-  <div class="grid">
-    <article class="card">
-      <h3>Structure</h3>
-      <p><code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;aside&gt;</code>, <code>&lt;footer&gt;</code> create a navigable outline.</p>
-    </article>
-    <article class="card">
-      <h3>Accessibility</h3>
-      <p>Screen readers rely on landmarks and headings. Good semantics reduces ARIA you need to add.</p>
-    </article>
-    <article class="card">
-      <h3>SEO</h3>
-      <p>Search engines infer importance from headings, lists, and landmarks — semantics help them help you.</p>
-    </article>
-  </div>
-</section>
+  <!-- ===== Main content ===== -->
+  <main class="container">
+    <section class="hero">
+      <h1>Semantic HTML & Accessibility</h1>
+      <p>
+        Semantic HTML gives meaning to content and creates a clear document outline for users,
+        screen readers, and search engines. Accessibility (a11y) builds on semantics to ensure
+        everyone can use your site regardless of ability, device, or context.
+      </p>
+    </section>
 
-<section aria-labelledby="sec-fig">
-  <h2 id="sec-fig">Examples with Images & Captions</h2>
+    <section aria-labelledby="sec-semantics">
+      <h2 id="sec-semantics">Why Semantic Elements Matter</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Structure</h3>
+          <p>
+            Use landmarks like <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>,
+            <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;aside&gt;</code>, and <code>&lt;footer&gt;</code>
+            to create a navigable outline.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Accessibility</h3>
+          <p>
+            Screen readers rely on headings and landmarks. Strong semantics reduces the extra ARIA you need.
+          </p>
+        </article>
+        <article class="card">
+          <h3>SEO</h3>
+          <p>
+            Search engines infer importance from headings, lists, and structure — semantics help them help you.
+          </p>
+        </article>
+      </div>
+    </section>
 
-  <figure class="media">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTUa9eua3bX1UZ_earSPkyG2Ce33-ZzpctlA&s"
-         alt="Illustration of a computer keyboard representing input and accessibility (Placeholder image)"
-         loading="lazy" width="900" height="300">
-    <figcaption>Meaningful <strong>alt</strong> text describes the content or function of an image. (Placeholder image)</figcaption>
-  </figure>
+    <section aria-labelledby="sec-fig">
+      <h2 id="sec-fig">Examples with Images &amp; Captions</h2>
 
-  <figure class="media">
-    <img src="https://miro.medium.com/1*cYOB76MZe6DNDBlwNrsUvQ.jpeg"
-         alt="Stylized depiction of a screen reader reading interface elements (Placeholder)"
-         loading="lazy" width="900" height="300">
-    <figcaption>Landmarks + headings let assistive tech jump to sections efficiently. (Placeholder image)</figcaption>
-  </figure>
-</section>
+      <figure class="media card">
+        <img
+          src="https://cdn.pixabay.com/photo/2016/10/29/08/10/keyboard-1782322_1280.jpg"
+          alt="Computer keyboard close-up, representing user input and accessibility concepts"
+          loading="lazy" width="1280" height="853">
+        <figcaption>
+          Provide meaningful <strong>alt</strong> text describing an image’s purpose. Decorative images may use
+          <code>alt=""</code>.
+        </figcaption>
+      </figure>
 
-<section aria-labelledby="sec-aria">
-  <h2 id="sec-aria">ARIA: When (and When Not) to Use It</h2>
-  <ul>
-    <li><strong>Use native elements first.</strong> Prefer <code>&lt;button&gt;</code> over clickable <code>&lt;div&gt;</code>.</li>
-    <li><strong>Role parity:</strong> Don’t add roles to elements that already have implicit roles (e.g., <code>&lt;nav&gt;</code>).</li>
-    <li><strong>Labels:</strong> Use <code>aria-label</code> or <code>aria-labelledby</code> when a visible label is missing.</li>
-  </ul>
-</section>
+      <figure class="media card">
+        <img
+          src="https://cdn.pixabay.com/photo/2016/10/29/08/05/computer-1781430_1280.png"
+          alt="Abstract UI illustration suggesting navigation and landmark regions"
+          loading="lazy" width="1280" height="853">
+        <figcaption>
+          Landmarks + headings let assistive tech jump to sections efficiently.
+        </figcaption>
+      </figure>
+    </section>
 
-<section aria-labelledby="sec-table">
-  <h2 id="sec-table">Accessible Table Example</h2>
-  <p>Tables need headers, scope, and captions:</p>
+    <section aria-labelledby="sec-aria">
+      <h2 id="sec-aria">ARIA: When (and When Not) to Use It</h2>
+      <ul>
+        <li><strong>Use native elements first.</strong> Prefer <code>&lt;button&gt;</code> over a clickable <code>&lt;div&gt;</code>.</li>
+        <li><strong>Don’t duplicate roles.</strong> Avoid adding roles to elements that already have implicit roles (e.g., <code>&lt;nav&gt;</code>).</li>
+        <li><strong>Labels matter.</strong> Use <code>aria-label</code> or <code>aria-labelledby</code> when there’s no visible label.</li>
+      </ul>
+    </section>
 
-  <figure class="media">
-    <table class="table">
-      <caption>Semantic vs. Non-Semantic HTML</caption>
-      <thead>
-        <tr>
-          <th scope="col">Semantic</th>
-          <th scope="col">Use Case</th>
-          <th scope="col">Non-Semantic Equivalent</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>&lt;article&gt;</code></td>
-          <td>Self-contained piece of content</td>
-          <td><code>&lt;div class="article"&gt;</code></td>
-        </tr>
-        <tr>
-          <td><code>&lt;nav&gt;</code></td>
-          <td>Primary or secondary navigation</td>
-          <td><code>&lt;div id="nav"&gt;</code></td>
-        </tr>
-        <tr>
-          <td><code>&lt;main&gt;</code></td>
-          <td>Unique primary page content</td>
-          <td><code>&lt;div id="main"&gt;</code></td>
-        </tr>
-      </tbody>
-    </table>
-    <figcaption>Prefer semantics over classes for meaning.</figcaption>
-  </figure>
-</section>
+    <section aria-labelledby="sec-table">
+      <h2 id="sec-table">Accessible Table Example</h2>
+      <p>Tables benefit from captions, scoped headers, and clear column meaning:</p>
 
-<section aria-labelledby="sec-checklist">
-  <h2 id="sec-checklist">Quick A11y Checklist</h2>
-  <ol>
-    <li>One <code>&lt;h1&gt;</code> per page; use descending headings for structure.</li>
-    <li>Every image has a purposeful <code>alt</code> (or empty alt for decorative images).</li>
-    <li>Links are descriptive (“View syllabus” not “Click here”).</li>
-    <li>Focusable controls show a visible focus ring.</li>
-    <li>Color contrast passes WCAG AA where possible.</li>
-  </ol>
-</section>
+      <figure class="media">
+        <div class="table-wrap">
+          <table class="table">
+            <caption>Semantic vs. Non-Semantic HTML</caption>
+            <thead>
+              <tr>
+                <th scope="col">Semantic</th>
+                <th scope="col">Use Case</th>
+                <th scope="col">Non-Semantic Equivalent</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>&lt;article&gt;</code></td>
+                <td>Self-contained piece of content</td>
+                <td><code>&lt;div class="article"&gt;</code></td>
+              </tr>
+              <tr>
+                <td><code>&lt;nav&gt;</code></td>
+                <td>Primary or secondary navigation</td>
+                <td><code>&lt;div id="nav"&gt;</code></td>
+              </tr>
+              <tr>
+                <td><code>&lt;main&gt;</code></td>
+                <td>Unique primary page content</td>
+                <td><code>&lt;div id="main"&gt;</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <figcaption>Prefer semantic elements over generic containers when conveying meaning.</figcaption>
+      </figure>
+    </section>
+
+    <section aria-labelledby="sec-checklist">
+      <h2 id="sec-checklist">Quick A11y Checklist</h2>
+      <ol>
+        <li>One <code>&lt;h1&gt;</code> per page; descend logically with <code>h2</code>, <code>h3</code>, …</li>
+        <li>All images have purposeful <code>alt</code> (or empty alt for decorative images).</li>
+        <li>Links are descriptive (e.g., “View syllabus” over “Click here”).</li>
+        <li>Focusable controls show a visible focus ring.</li>
+        <li>Color contrast meets WCAG AA where possible.</li>
+      </ol>
+    </section>
+  </main>
+
+  <!-- ===== Shared footer ===== -->
+  <footer>
+    <div class="container footer-grid">
+      <small>
+        <strong>Note:</strong> This is a class project for
+        <a class="text-link" href="https://ksuweb.github.io/IT3203/" target="_blank" rel="noopener noreferrer">
+          IT 3203 (KSU)
+        </a>.
+      </small>
+      <div>
+        <a class="text-link" href="https://validator.w3.org/" target="_blank" rel="noopener noreferrer">Validate HTML</a>
+        &nbsp;·&nbsp;
+        <a class="text-link" href="https://pages.github.com/" target="_blank" rel="noopener noreferrer">GitHub Pages</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Shared JS: nav toggle + (quiz logic runs only on quiz page) -->
+  <script src="app.js" defer></script>
+</body>
+</html>
