@@ -338,3 +338,58 @@ label.choice.answer{
 @media (prefers-reduced-motion: reduce){
   *{ transition: none !important; scroll-behavior: auto !important; }
 }
+
+
+/* ====== Mobile-first base (already mostly mobile) ====== */
+/* Ensure nav can collapse */
+.nav { gap: .5rem; }
+.nav-toggle { display: inline-block; font-size: 1.25rem; background: none; border: 1px solid var(--border); padding: .4rem .6rem; border-radius: 10px; }
+#primary-nav { display: none; flex-direction: column; gap: .25rem; }
+#primary-nav.open { display: flex; }
+/* Make content breathe on small screens */
+.container { padding-inline: 1rem; }
+.hero img, .media img { width: 100%; height: auto; }
+
+/* Tables: horizontal scroll on small screens */
+.table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--border); border-radius: 10px; }
+.table-wrapper > table { min-width: 640px; border: none; }
+
+/* Forms (quiz): full-width controls & comfortable tap targets */
+.quiz-form input[type="text"],
+.quiz-form input[type="email"],
+.quiz-form input[type="number"],
+.quiz-form select,
+.quiz-form textarea {
+  width: 100%;
+  max-width: 100%;
+  padding: .75rem .9rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #0e1528;
+  color: var(--text);
+}
+label.choice { padding: .65rem .8rem; }           /* bigger tap area */
+button, .btn { min-height: 44px; }                 /* mobile tap target */
+
+/* Images: never overflow */
+img { max-width: 100%; height: auto; display: block; }
+
+/* ====== Breakpoint 1: tablets and up (>= 640px) ====== */
+@media (min-width: 640px) {
+  .container { padding-inline: 1.5rem; }
+  .grid { gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+}
+
+/* ====== Breakpoint 2: desktops (>= 768px) ====== */
+@media (min-width: 768px) {
+  /* Desktop nav: show links inline, hide hamburger */
+  .nav { align-items: center; }
+  .nav-toggle { display: none; }
+  #primary-nav { display: flex !important; flex-direction: row; gap: .25rem; margin-top: 0; }
+}
+
+/* Optional larger desktop spacing (>= 1024px) */
+@media (min-width: 1024px) {
+  .container { padding-inline: 2rem; }
+}
+
