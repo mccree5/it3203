@@ -6,21 +6,28 @@
   <title>Homepage | IT 3203 Project</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
+
+<script src="app.js" defer></script>
+
 <body>
   <!-- Header  -->
 
   <header>
     <div class="container nav" role="navigation" aria-label="Primary">
       <div class="brand">IT 3203 • Web Project</div>
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="topic1.html">Topic 1</a>
-        <a href="topic2.html">Topic 2</a>
-        <a href="concepts.html">Key Concepts</a>
-        <a href="references.html">References</a>
-        <a href="quiz.html">Quiz</a>
-        <a href="about.html">About</a>
-      </nav>
+   <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle menu">
+  ☰
+</button>
+<nav id="primary-nav" aria-label="Primary">
+  <a href="index.html">Home</a>
+  <a href="topic1.html">Topic 1</a>
+  <a href="topic2.html">Topic 2</a>
+  <a href="concepts.html">Key Concepts</a>
+  <a href="references.html">References</a>
+  <a href="quiz.html">Quiz</a>
+  <a href="about.html">About</a>
+</nav>
+
     </div>
   </header>
 

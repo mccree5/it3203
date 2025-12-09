@@ -7,21 +7,27 @@
   <!-- If concepts.html is at repo root, keep this path. If it's in /pages/, use ../styles.css -->
   <link rel="stylesheet" href="styles.css">
 </head>
+
+<script src="app.js" defer></script>
+
 <body>
   <!-- Shared header / nav -->
   <header>
     <div class="container nav">
       <div class="brand">IT 3203 • Web Project</div>
-      <nav aria-label="Primary">
-        <a href="index.html">Home</a>
-        <a href="topic1.html">Topic 1</a>
-        <a href="topic2.html">Topic 2</a>
-        <a href="concepts.html" aria-current="page">Key Concepts</a>
-        <a href="references.html">References</a>
-         <a href="quiz.html">Quiz</a>
-        <a href="about.html">About</a>
-       
-      </nav>
+<button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle menu">
+  ☰
+</button>
+<nav id="primary-nav" aria-label="Primary">
+  <a href="index.html">Home</a>
+  <a href="topic1.html">Topic 1</a>
+  <a href="topic2.html">Topic 2</a>
+  <a href="concepts.html">Key Concepts</a>
+  <a href="references.html">References</a>
+  <a href="quiz.html">Quiz</a>
+  <a href="about.html">About</a>
+</nav>
+
     </div>
   </header>
 
